@@ -1,0 +1,60 @@
+syntax = "proto3";
+package com.scentbird.tictactoe;
+
+option java_multiple_files = true;
+option java_package = "com.scentbird.tictactoe";
+option java_outer_classname = "TicTacToeProto";
+
+service TicTacToeService {
+  rpc NewGame(NewGameRequest) returns (NewGameResponse);
+  rpc Play(stream TurnRequest) returns (stream TurnRequest);
+}
+
+message NewGameRequest {}
+message NewGameResponse {
+  string gameId = 1;
+  Player player = 2;
+  Board board = 3;
+  GameStatus gameStatus = 4;
+}
+
+enum GameStatus {
+  UNSPECIFIED = 0;
+  IN_PROGRESS = 1;
+  X_WON = 2;
+  O_WON = 3;
+  DRAW = 4;
+}
+
+message Board {
+  enum Cell {
+    CELL_UNSPECIFIED = 0;
+    CELL_EMPTY = 1;
+    CELL_X = 2;
+    CELL_O = 3;
+  }
+  repeated Cell cells = 1;
+}
+
+enum Player {
+  PLAYER_UNSPECIFIED = 0;
+  PLAYER_X = 1;
+  PLAYER_O = 2;
+}
+
+message Move {
+  int32 x = 1;
+  int32 y = 2;
+}
+
+message TurnRequest {
+  string gameId = 1;
+  oneof Payload {
+    Move move = 3;
+    GameStatus status = 4;
+  }
+}
+
+message MakeMoveResponse {
+  Board board = 3;
+}

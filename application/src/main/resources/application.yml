@@ -1,0 +1,22 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: local-grpc-client
+
+grpc:
+  client:
+    grpc-server:
+      address: 'static://${APP_OPPONENT_ADDRESS:localhost}:9090'
+      enableKeepAlive: true
+      keepAliveWithoutCalls: true
+      negotiationType: plaintext
+  server:
+    port: 9090
+
+application:
+  threadpool:
+    size: 10
+  response-delay-ms: ${APP_TURN_DELAY_MS:300}
+  run-delay-ms: 3000
+

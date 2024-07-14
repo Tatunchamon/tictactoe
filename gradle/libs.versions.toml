@@ -1,0 +1,29 @@
+[versions]
+spring-boot = "3.3.1"
+web-starter = "3.3.1"
+
+# grpc
+grpc-spring = "3.1.0.RELEASE"
+grpc = "1.65.0"
+# Понять кто тащит эту версию, посследняя 4.27.0
+protobuf = "4.27.0"
+
+[libraries]
+# spring-boot
+spring-boot-bom = { module = "org.springframework.boot:spring-boot-dependencies", version.ref = "spring-boot" }
+spring-boot-starter-actuator = { module = "org.springframework.boot:spring-boot-starter-actuator" }
+spring-boot-starter-web = { module = "org.springframework.boot:spring-boot-starter-web", version.ref = "web-starter"  }
+spring-boot-starter-test = { module = "org.springframework.boot:spring-boot-starter-test" }
+
+# grpc
+grpc-spring-boot-starter = { module = "net.devh:grpc-spring-boot-starter", version.ref = "grpc-spring" }
+grpc-netty-shaded = { module = "io.grpc:grpc-netty-shaded", version.ref = "grpc"}
+grpc-protobuf = { module = "io.grpc:grpc-protobuf", version.ref = "grpc"}
+grpc-stub = { module = "io.grpc:grpc-stub", version.ref = "grpc"}
+grpc-core = { module = "io.grpc:grpc-core", version.ref = "grpc"}
+protoc-gen-grpc-java = { module = "io.grpc:protoc-gen-grpc-java", version.ref = "grpc" }
+
+protobuf-protoc = { module = "com.google.protobuf:protoc", version.ref = "protobuf" }
+
+
+junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher"}
